@@ -4,5 +4,13 @@ using namespace std;
 
 int main()
 {
-    cout << 1 << endl;
+    class BigInt{
+        private:
+            string digits;
+
+        public:
+            BigInt(unsigned long long n = 0);
+    
+            BigInt(string s);
+    };
 }
