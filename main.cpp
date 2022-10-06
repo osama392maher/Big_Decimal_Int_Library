@@ -74,14 +74,18 @@ BigDecimalInt operator +(BigDecimalInt a, BigDecimalInt b)
             carry = temp;
         }
     }
+    if(carry)
+    {
+        c.digits.push_back(carry + '0');
+    }
     reverse(c.digits.begin(), c.digits.end());
     return c;
 }
 
 int main()
 {
-    BigDecimalInt a(1234);
-    BigDecimalInt b(99);
+    BigDecimalInt a(9999);
+    BigDecimalInt b(9999);
     BigDecimalInt c = a + b;
     cout << c;
 }
