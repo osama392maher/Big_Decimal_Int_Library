@@ -16,6 +16,8 @@ public:
 
     //opreations
     friend BigDecimalInt operator +(BigDecimalInt a, BigDecimalInt b);
+    friend bool operator ==(BigDecimalInt a, BigDecimalInt b);
+    BigDecimalInt   operator= (const BigDecimalInt a);
 
 };
 
@@ -83,11 +85,20 @@ BigDecimalInt operator +(BigDecimalInt a, BigDecimalInt b)
     return c;
 }
 
+
+BigDecimalInt BigDecimalInt ::operator = (const BigDecimalInt b) {
+    
+    return b;
+}
+
+
 int main()
 {
     BigDecimalInt a(9999);
     BigDecimalInt b(9999);
     BigDecimalInt c = a + b;
     cout << c;
+    BigDecimalInt d=b.operator=(b);
+    cout << d;
 }
 
