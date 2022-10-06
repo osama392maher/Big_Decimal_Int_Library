@@ -4,6 +4,7 @@ using namespace std;
 
 class BigDecimalInt{
 private:
+    bool negative = false;
     string digits = "";
 public:
     // Constructors
@@ -89,5 +90,4 @@ int main()
     BigDecimalInt c = a + b;
     cout << c;
 }
-
 
