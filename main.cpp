@@ -13,6 +13,9 @@ public:
     // Print
     friend ostream& operator << (ostream& out, BigDecimalInt n);
 
+    //opreations
+    friend BigDecimalInt operator +(BigDecimalInt a, BigDecimalInt b);
+
 };
 
 BigDecimalInt::BigDecimalInt(string s)
@@ -42,10 +45,45 @@ ostream& operator << (ostream& out, BigDecimalInt n)
     return out;
 }
 
+BigDecimalInt operator +(BigDecimalInt a, BigDecimalInt b)
+{
+    BigDecimalInt c(0);
+    int carry = 0;
+    int n = max(a.digits.length(), b.digits.length());
+    while(a.digits.length() != n)
+    {
+        a.digits.insert(0, "0");
+    }
+    while(b.digits.length() != n)
+    {
+        b.digits.insert(0, "0");
+    }
+    for(int i = n - 1; i >= 0; i--)
+    {
+
+        int temp = (a.digits[i] - '0') + (b.digits[i] - '0') + carry;
+        if(temp < 10)
+        {
+            c.digits.push_back(temp + '0');
+            carry = 0;
+        }
+        else
+        {
+            c.digits.push_back((temp % 10) + '0');
+            temp /= 10;
+            carry = temp;
+        }
+    }
+    reverse(c.digits.begin(), c.digits.end());
+    return c;
+}
+
 int main()
 {
-    BigDecimalInt n(1234);
-    cout << n;
+    BigDecimalInt a(1234);
+    BigDecimalInt b(99);
+    BigDecimalInt c = a + b;
+    cout << c;
 }
 
 
