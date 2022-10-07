@@ -97,7 +97,10 @@ BigDecimalInt BigDecimalInt ::operator = (const BigDecimalInt b) {
 }
 int  BigDecimalInt::size() {
     return  digits.size();
+}
+int  BigDecimalInt::sign() {
 
+    return  negative;
 }
 
 int main()
@@ -109,4 +112,6 @@ int main()
     a.operator==(b);
     BigDecimalInt d=b.operator=(b);
     cout << d;
+    cout << b.sign();
+}
 }
