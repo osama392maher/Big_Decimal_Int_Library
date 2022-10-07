@@ -8,7 +8,7 @@ private:
     string digits = "";
 public:
     // Constructors
-    BigDecimalInt(unsigned long long n);
+    BigDecimalInt(long long n);
     BigDecimalInt(string s);
 
     // Print
@@ -29,7 +29,7 @@ BigDecimalInt::BigDecimalInt(string s)
         digits.push_back(s[i]);
     }
 }
-BigDecimalInt::BigDecimalInt(unsigned long long n)
+BigDecimalInt::BigDecimalInt(long long n)
 {
     while(n)
     {
@@ -110,4 +110,3 @@ int main()
     BigDecimalInt d=b.operator=(b);
     cout << d;
 }
-
