@@ -18,7 +18,8 @@ public:
     friend BigDecimalInt operator +(BigDecimalInt a, BigDecimalInt b);
     bool operator ==(BigDecimalInt a);
     BigDecimalInt   operator= (const BigDecimalInt a);
-
+  int size();
+  int sign();
 };
 
 BigDecimalInt::BigDecimalInt(string s)
@@ -94,7 +95,10 @@ BigDecimalInt BigDecimalInt ::operator = (const BigDecimalInt b) {
     
     return b;
 }
+int  BigDecimalInt::size() {
+    return  digits.size();
 
+}
 
 int main()
 {
