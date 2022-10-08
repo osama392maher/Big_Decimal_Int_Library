@@ -97,7 +97,7 @@ BigDecimalInt operator +(BigDecimalInt a, BigDecimalInt b)
 
 bool BigDecimalInt :: operator ==(BigDecimalInt a) {
 
-    return (digits==a.digits);
+     return (digits == a.digits && negative==a.negative);
 }
 
 BigDecimalInt BigDecimalInt ::operator = (const BigDecimalInt b) {
