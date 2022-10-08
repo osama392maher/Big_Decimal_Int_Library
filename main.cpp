@@ -3,10 +3,13 @@
 using namespace std;
 
 class BigDecimalInt{
+
 private:
     bool negative = false;
     string digits = "";
+
 public:
+
     // Constructors
     BigDecimalInt(long long n);
     BigDecimalInt(string s);
@@ -14,12 +17,18 @@ public:
     // Print
     friend ostream& operator << (ostream& out, BigDecimalInt n);
 
+    //Assigning
+    BigDecimalInt operator= (const BigDecimalInt a);
+
     //opreations
     friend BigDecimalInt operator +(BigDecimalInt a, BigDecimalInt b);
+
+    //comparsion
     bool operator ==(BigDecimalInt a);
-    BigDecimalInt   operator= (const BigDecimalInt a);
-  int size();
-  int sign();
+
+    //Other functions
+    int size();
+    int sign();
 };
 
 BigDecimalInt::BigDecimalInt(string s)
