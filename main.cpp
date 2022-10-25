@@ -161,23 +161,14 @@ string subtract(string &a, string &b, int idx, bool srch_brrw) { // 1500 - 1300
 }
 
 BigDecimalInt operator-(BigDecimalInt a, BigDecimalInt b) {
-    // subtract negative numbers
-    if (a.bigIntSign == -1 && b.bigIntSign == -1) {
-        a.bigIntSign = 1;
-        b.bigIntSign = 1;
-        return b - a;
-    }
-    // subtract positive number from negative number
-    if (a.bigIntSign == -1) {
-        a.bigIntSign = 1;
-        return a + b;
-    }
-    // subtract negative number from positive number
-    if (b.bigIntSign == -1) {
-        b.bigIntSign = 1;
-        return a + b;
-    }
- 
+    BigDecimalInt res("");
+
+    if(a < b)
+        res.bigIntSign = -1;
+    else if(a > b)
+        res.bigIntSign = 1;
+    else
+        res.bigIntSign = 0;
 
     // make bigInt (a) is the absolute_bigger int
     if (a.size() < b.size() || (a.size() == b.size() && a.digits < b.digits)) {
@@ -185,8 +176,9 @@ BigDecimalInt operator-(BigDecimalInt a, BigDecimalInt b) {
     }
 
     b.digits = string(a.size() - b.size(), '0') + b.digits;
+    res.digits = subtract(a.digits, b.digits, a.size() - 1, false);
 
-    return {subtract(a.digits, b.digits, a.size() - 1, false)};
+    return res;
 }
 
 //_______________________________________________________
