@@ -78,6 +78,8 @@ BigDecimalInt::BigDecimalInt(long long n) {
 // print
 
 ostream &operator<<(ostream &out, BigDecimalInt n) {
+    if(n.bigIntSign == -1)
+        out << '-';
     for (int i = 0; i < n.digits.length(); i++) {
         out << n.digits[i];
     }
@@ -90,7 +92,26 @@ ostream &operator<<(ostream &out, BigDecimalInt n) {
 BigDecimalInt operator+(BigDecimalInt a, BigDecimalInt b) {
     BigDecimalInt c(0);
     int carry = 0;
-
+    // ADD NEGATIVE NUMBERS
+    if (a.bigIntSign == -1 && b.bigIntSign == -1) {
+        c.bigIntSign = -1;
+        a.bigIntSign = 1;
+        b.bigIntSign = 1;
+        c = a + b;
+        return c;
+    }
+    // add positive number to negative number
+    if (a.bigIntSign == -1) {
+        a.bigIntSign = 1;
+        c = b - a;
+        return c;
+    }
+    // add negative number to positive number
+    if (b.bigIntSign == -1) {
+        b.bigIntSign = 1;
+        c = a - b;
+        return c;
+    }
     if(a.size() < b.size()){
         a.digits = string(b.size() - a.size(), '0') + a.digits;
     }
@@ -140,6 +161,23 @@ string subtract(string &a, string &b, int idx, bool srch_brrw) { // 1500 - 1300
 }
 
 BigDecimalInt operator-(BigDecimalInt a, BigDecimalInt b) {
+    // subtract negative numbers
+    if (a.bigIntSign == -1 && b.bigIntSign == -1) {
+        a.bigIntSign = 1;
+        b.bigIntSign = 1;
+        return b - a;
+    }
+    // subtract positive number from negative number
+    if (a.bigIntSign == -1) {
+        a.bigIntSign = 1;
+        return a + b;
+    }
+    // subtract negative number from positive number
+    if (b.bigIntSign == -1) {
+        b.bigIntSign = 1;
+        return a + b;
+    }
+ 
 
     // make bigInt (a) is the absolute_bigger int
     if (a.size() < b.size() || (a.size() == b.size() && a.digits < b.digits)) {
@@ -206,6 +244,4 @@ int BigDecimalInt::sign() const {
 }
 
 //_______________________________________________________
-
-
 
