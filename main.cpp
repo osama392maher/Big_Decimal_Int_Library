@@ -12,6 +12,7 @@ public:
 
     // Constructors
     BigDecimalInt(long long n);
+
     BigDecimalInt(string s);
 
     // Print
@@ -22,15 +23,19 @@ public:
 
     //opreations
     friend BigDecimalInt operator+(BigDecimalInt a, BigDecimalInt b);
+
     friend BigDecimalInt operator-(BigDecimalInt a, BigDecimalInt b);
 
     //comparsion
     bool operator==(const BigDecimalInt &a);
+
     bool operator<(BigDecimalInt &a);
+
     bool operator>(BigDecimalInt &a);
 
     //Other functions
     int size() const;
+
     int sign() const;
 };
 
@@ -78,7 +83,7 @@ BigDecimalInt::BigDecimalInt(long long n) {
 // print
 
 ostream &operator<<(ostream &out, BigDecimalInt n) {
-    if(n.bigIntSign == -1)
+    if (n.bigIntSign == -1)
         out << '-';
     for (int i = 0; i < n.digits.length(); i++) {
         out << n.digits[i];
@@ -112,11 +117,10 @@ BigDecimalInt operator+(BigDecimalInt a, BigDecimalInt b) {
         c = a - b;
         return c;
     }
-    if(a.size() < b.size()){
+    if (a.size() < b.size()) {
         a.digits = string(b.size() - a.size(), '0') + a.digits;
-    }
-    else {
-        b.digits = string( a.size() - b.size(), '0') + b.digits;
+    } else {
+        b.digits = string(a.size() - b.size(), '0') + b.digits;
     }
 
     int n = a.size();
@@ -163,9 +167,9 @@ string subtract(string &a, string &b, int idx, bool srch_brrw) { // 1500 - 1300
 BigDecimalInt operator-(BigDecimalInt a, BigDecimalInt b) {
     BigDecimalInt res("");
 
-    if(a < b)
+    if (a < b)
         res.bigIntSign = -1;
-    else if(a > b)
+    else if (a > b)
         res.bigIntSign = 1;
     else
         res.bigIntSign = 0;
@@ -212,7 +216,7 @@ bool BigDecimalInt::operator<(BigDecimalInt &a) {
 }
 
 bool BigDecimalInt::operator>(BigDecimalInt &a) {
-    return  a < (*this) ;
+    return a < (*this);
 }
 
 //_______________________________________________________
@@ -237,3 +241,37 @@ int BigDecimalInt::sign() const {
 
 //_______________________________________________________
 
+int main() {
+    BigDecimalInt a("123456789012345678901234567890");
+    BigDecimalInt b("123456789012345678901234567890");
+    BigDecimalInt c("965499929492005200425255425255");
+    BigDecimalInt d("479621491764978164891694816948");
+    BigDecimalInt e("471929104180431040140140140140");
+    BigDecimalInt f("748999238183813881388138813881");
+    BigDecimalInt g("243221312312312312312312312312");
+    BigDecimalInt h("313142598598598598598598598598");
+    BigDecimalInt i("63284137127313");
+    BigDecimalInt x = a + b;
+    BigDecimalInt y = c - d;
+    BigDecimalInt z = e + (f + h);
+    BigDecimalInt w = g - (x + a);
+    BigDecimalInt v = i - (i + i);
+    BigDecimalInt t = (a + b) - (c - d);
+    BigDecimalInt s = (e + (f + h)) - (g - (x + a));
+    BigDecimalInt r = (i - (i + i)) - (i - (i + i));
+    BigDecimalInt q = (a + b) - (c - d) + (e + (f + h)) - (g - (x + a)) + (i - (i + i)) - (i - (i + i));
+    BigDecimalInt p =
+            (a + b) - (c - d) + (e + (f + h)) - (g - (x + a)) + (i - (i + i)) - (i - (i + i)) + (a + b) - (c - d) +
+            (e + (f + h)) - (g - (x + a)) + (i - (i + i)) - (i - (i + i));
+    cout << x << endl;
+    cout << y << endl;
+    cout << z << endl;
+    cout << w << endl;
+    cout << v << endl;
+    cout << t << endl;
+    cout << s << endl;
+    cout << r << endl;
+    cout << q << endl;
+    cout << p << endl;
+    return 0;
+}
