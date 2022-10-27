@@ -260,9 +260,7 @@ int main() {
     BigDecimalInt s = (e + (f + h)) - (g - (x + a));
     BigDecimalInt r = (i - (i + i)) - (i - (i + i));
     BigDecimalInt q = (a + b) - (c - d) + (e + (f + h)) - (g - (x + a)) + (i - (i + i)) - (i - (i + i));
-    BigDecimalInt p =
-            (a + b) - (c - d) + (e + (f + h)) - (g - (x + a)) + (i - (i + i)) - (i - (i + i)) + (a + b) - (c - d) +
-            (e + (f + h)) - (g - (x + a)) + (i - (i + i)) - (i - (i + i));
+    BigDecimalInt p = (a + b) - (c - d) + (e + (f + h)) - (g - (x + a)) + (i - (i + i)) - (i - (i + i)) + (a + b) - (c - d) + (e + (f + h)) - (g - (x + a)) + (i - (i + i)) - (i - (i + i));
     cout << x << endl;
     cout << y << endl;
     cout << z << endl;
