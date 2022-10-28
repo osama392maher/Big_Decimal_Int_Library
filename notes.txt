@@ -1,0 +1,27 @@
+sample for + and -:
+code for testing:
+string n1, n2;
+    while (cin >> n1 >> n2) {
+        BigDecimalInt x(n1), y(n2);
+        cout << x + y << endl;
+        cout << x - y << endl;
+        cout << y - x << endl;
+    }
+intput:
+-9 5
+-5 9
+5 8
+-4 -6
+output:
+-4
+-14
+14
+4
+-14
+14
+13
+-3
+3
+-10
+2
+-2
